@@ -1,0 +1,53 @@
+﻿@import url('kenteken/css/kenteken.css');
+
+::placeholder {
+    color: rgba(0,0,0,.15);
+}
+
+.kenteken {
+    position: relative;
+    background: #f3bd00;
+    width: 624px;
+    height: 120px;
+    padding: 3px;
+    margin: 15px auto;
+    border-radius: 5px;
+    box-shadow: 0 0 6px rgba(0,0,0,.3);
+}
+.inset {
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: auto;
+    height: 115px;
+    position: relative;
+    display: flex;
+}
+.kenteken .inset .blue {
+    position: relative;
+    top: -1px;
+    width: 68px;
+    height: 115px;
+    background: #003399;
+    border-right: 1px solid #333;
+    background-image: url('../images/NLD1-01.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.kenteken .inset input {
+    text-transform: uppercase;
+    background: 0;
+    border: 0;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: calc(100% - 35px);
+    font-size: 80px;
+    letter-spacing: 3px;
+    line-height: 38px;
+    font-family: 'Kenteken';
+    background-image: url('../images/VU4.svg');
+    background-repeat: no-repeat;
+    background-size: auto;
+}

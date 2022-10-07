@@ -4,6 +4,9 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+h1 {
+    font-size: calc(3rem + 1.5vw);
+}
 h1:focus {
     outline: none;
 }
@@ -20,6 +23,12 @@ a, .btn-link {
 
 .content {
     padding-top: 1.1rem;
+}
+
+.search-title-align-center {
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -62,3 +71,4 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+    

@@ -1,0 +1,7 @@
+﻿@font-face {
+    font-family: 'Kenteken';
+    font-style: normal;
+    font-weight: 400;
+    /*src: local('Kenteken'), url('https://fonts.cdnfonts.com/s/3671/Kenteken.woff') format('woff');*/
+    src: url('../font/Kenteken.woff') format('woff');
+}
