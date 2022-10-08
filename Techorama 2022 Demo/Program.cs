@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Components/Pages");
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-
 
 var app = builder.Build();
 
