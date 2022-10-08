@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SV.Techorama.Services;
+using SV.Techorama.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Components/Pages");
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+builder.Services.AddHttpClient();
+builder.Services.AddTransient<IRdwService, RdwService>();
 
 builder.Services.AddFluxor(o =>
 {
