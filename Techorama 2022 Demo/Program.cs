@@ -7,6 +7,15 @@ builder.Services.Configure<RazorPagesOptions>(options => options.RootDirectory =
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+builder.Services.AddFluxor(o =>
+{
+    o.ScanAssemblies(typeof(Program).Assembly);
+    o.UseReduxDevTools(rdt =>
+    {
+        rdt.Name = "Techorama Demo";
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
