@@ -31,6 +31,12 @@ a, .btn-link {
     text-align: center;
 }
 
+.search-footer-align-center {
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
+}
+
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
