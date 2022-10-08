@@ -1,6 +1,4 @@
-using SV.Techorama.Models;
 using SV.Techorama.Services.Interfaces;
-using SV.Techorama.Store.FindKenteken.Actions;
 
 namespace SV.Techorama.Store.FindKenteken;
 
@@ -15,9 +13,14 @@ public class FindKentekenEffect : Effect<FindKentekenAction>
 
     public override async Task HandleAsync(FindKentekenAction action, IDispatcher dispatcher)
     {
-        // action.Kenteken;
-        var rdwModel = new RdwModel();
-        
-        dispatcher.Dispatch(new KentekenFoundAction() { RdwModel = rdwModel});
+        var rdwModel = await _rdwService.FindKenteken(action.Kenteken);
+        if (rdwModel is null)
+        {
+            dispatcher.Dispatch(new FindKentekenErrorAction("License plate could not be found!"));
+        }
+        else
+        {
+            dispatcher.Dispatch(new KentekenFoundAction(rdwModel));
+        }
     }
 }

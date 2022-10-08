@@ -1,4 +1,21 @@
+@using SV.Techorama.Store.FindKenteken
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<p>@Brand</p>
 
 @code {
+   
+    public string Brand { get; set; }
     
+    protected override void OnInitialized()
+    {
+        SubscribeToAction<KentekenFoundAction>(result =>
+        {
+            Brand = result.RdwModel.Brand;
+            StateHasChanged();
+        });
+        
+        base.OnInitialized();
+    }
+
 }

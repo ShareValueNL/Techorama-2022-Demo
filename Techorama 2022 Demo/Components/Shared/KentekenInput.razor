@@ -1,3 +1,9 @@
+@using System.ComponentModel.DataAnnotations
+@using System.Text.RegularExpressions
+@using SV.Techorama.Store.FindKenteken
+
+@inject IDispatcher Dispatcher
+
 <p class="search-title-align-center">
     Let's find a license plate
 </p>
@@ -5,7 +11,7 @@
 <div class="kenteken">
     <div class="inset">
         <div class="blue"></div>
-        <input type="text" placeholder="K-173-JK" value="K-173-JK" maxlength="8" />
+        <input type="text" placeholder="K-173-JK" maxlength="8" @oninput="CheckAndSearch" />
     </div>
 </div>
 
@@ -14,5 +20,18 @@
 </p>
 
 @code {
-    
+
+    private void CheckAndSearch(ChangeEventArgs args)
+    {
+        if (args.Value is null) return;
+        
+        var licensePlate = args.Value?.ToString();
+        var plate = licensePlate?.Replace("-", string.Empty).ToUpper();
+        var regex = new Regex("[A-Z0-9]{6}");
+
+        if (plate is {Length: 6 } && regex.IsMatch(plate))
+        {
+            Dispatcher.Dispatch(new FindKentekenAction(plate));
+        }
+    }
 }
