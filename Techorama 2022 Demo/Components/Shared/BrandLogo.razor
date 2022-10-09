@@ -19,13 +19,23 @@
     {
         SubscribeToAction<KentekenFoundAction>(result =>
         {
-            BrandName = result.RdwModel.Brand;
-            var name = BrandName.ToLower();
-            Url = AvailableLogos.Contains(name) ? $"{name}.png" : "brand-not-found.png";
+            SetData(result.RdwModel.Brand);
+            StateHasChanged();
+        });
+        
+        SubscribeToAction<ReloadKentekenInfoSuccessAction>(results =>
+        {
+            SetData(results.State.RdwModel?.Brand);
             StateHasChanged();
         });
         
         base.OnInitialized();
     }
 
+    private void SetData(string? brandName)
+    {
+        BrandName = brandName;
+        var name = BrandName?.ToLower();
+        Url = AvailableLogos.Contains(name) ? $"{name}.png" : "brand-not-found.png";
+    }
 }

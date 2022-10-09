@@ -13,6 +13,7 @@
 else if (RdwModel != null)
 {
     <p>
+        <strong>@RdwModel.LicensePlate</strong><br />
         <strong>@RdwModel.Brand&nbsp;@RdwModel.Model</strong>
     </p>
     <p>
@@ -34,7 +35,7 @@ else if (RdwModel != null)
     public bool Loading { get; set; } = false;
 
     public RdwModel? RdwModel { get; set; }
-
+    
     protected override void OnInitialized()
     {
         SubscribeToAction<FindKentekenAction>(result =>
@@ -54,7 +55,13 @@ else if (RdwModel != null)
             RdwModel = null;
             StateHasChanged();
         });
-
+        SubscribeToAction<ReloadKentekenInfoSuccessAction>(results =>
+        {
+            Loading = false;
+            RdwModel = results.State.RdwModel;
+            StateHasChanged();
+        });
+        
         base.OnInitialized();
     }
 

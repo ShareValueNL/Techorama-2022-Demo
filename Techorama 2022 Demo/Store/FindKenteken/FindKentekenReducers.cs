@@ -36,3 +36,19 @@ public class KentekenFoundReducer : Reducer<FindKentekenState, KentekenFoundActi
         };
     }
 }
+
+public class ReloadKentekenInfoReducer : Reducer<FindKentekenState, ReloadKentekenInfoAction>
+{
+    public override FindKentekenState Reduce(FindKentekenState state, ReloadKentekenInfoAction action)
+    {
+        return state;
+    }
+}
+
+public class ReloadKentekenInfoSuccessReducer : Reducer<FindKentekenState, ReloadKentekenInfoSuccessAction>
+{
+    public override FindKentekenState Reduce(FindKentekenState state, ReloadKentekenInfoSuccessAction action)
+    {
+        return action.State;
+    }
+}

@@ -1,4 +1,8 @@
-﻿@inherits LayoutComponentBase
+﻿@using Fluxor.Persist.Middleware
+@using SV.Techorama.Store.FindKenteken
+@inherits Fluxor.Blazor.Web.Components.FluxorLayout
+
+@inject IDispatcher Dispatcher
 
 <PageTitle>Techorama 2022 Demo</PageTitle>
 
@@ -18,3 +22,19 @@
         </article>
     </main>
 </div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        SubscribeToAction<InitializePersistMiddlewareResultSuccessAction>(result =>
+        {
+            Console.WriteLine($"**** State rehydrated**");
+            Dispatcher.Dispatch(new ReloadKentekenInfoAction());
+            StateHasChanged(); // we now have state, we can re-render to reflect binding changes
+        });
+        
+        base.OnInitialized();
+    }
+
+}

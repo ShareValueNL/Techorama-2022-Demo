@@ -1,3 +1,6 @@
+using Blazored.LocalStorage;
+using Fluxor.Persist.Middleware;
+using Fluxor.Persist.Storage;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SV.Techorama.Services;
 using SV.Techorama.Services.Interfaces;
@@ -13,6 +16,10 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<IRdwService, RdwService>();
 builder.Services.AddScoped<IAlertService, AlertService>();
 
+builder.Services.AddScoped<IStringStateStorage, LocalStateStorage>();
+builder.Services.AddScoped<IStoreHandler, JsonStoreHandler>();
+builder.Services.AddBlazoredLocalStorage();
+
 builder.Services.AddFluxor(o =>
 {
     o.ScanAssemblies(typeof(Program).Assembly);
@@ -20,6 +27,7 @@ builder.Services.AddFluxor(o =>
     {
         rdt.Name = "Techorama Demo";
     });
+    o.UsePersist();
 });
 
 var app = builder.Build();

@@ -7,3 +7,7 @@ public record FindKentekenAction(string Kenteken);
 public record KentekenFoundAction(RdwModel RdwModel);
 
 public record FindKentekenErrorAction(string ErrorMessage);
+
+public record ReloadKentekenInfoAction;
+
+public record ReloadKentekenInfoSuccessAction(FindKentekenState State);
