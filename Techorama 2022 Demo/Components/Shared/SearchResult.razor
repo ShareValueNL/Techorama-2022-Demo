@@ -10,19 +10,31 @@
         <span class="visually-hidden">Loading...</span>
     </div>   
 }
-else
+else if (RdwModel != null)
 {
     <p>
-        <strong>@RdwModel?.Brand</strong>
-
+        <strong>@RdwModel.Brand&nbsp;@RdwModel.Model</strong>
+    </p>
+    <p>
+        Specifications:<br/>
+        Dimensions: @RdwModel.Length x @RdwModel.Width x @RdwModel.Height cm (length x width x height)<br/>
+        Weight: @RdwModel.EmptyWeight kg<br/>
+        Color: @RdwModel.Color<br/>
+        Maximum speed: @RdwModel.MaximumSpeed kph
+    </p>
+    <p>
+        Dates:<br/>
+        Initial Registration Date: @GetFormattedDate(@RdwModel.InitialRegistrationDate)<br />
+        Last Owner Registration Date: @GetFormattedDate(RdwModel.AscriptionDate)<br />
+        APK Expiration Date: @GetFormattedDate(RdwModel.ApkExpiryDate)<br />
     </p>
 }
 @code {
 
     public bool Loading { get; set; } = false;
-    
+
     public RdwModel? RdwModel { get; set; }
-    
+
     protected override void OnInitialized()
     {
         SubscribeToAction<FindKentekenAction>(result =>
@@ -42,8 +54,14 @@ else
             RdwModel = null;
             StateHasChanged();
         });
-        
+
         base.OnInitialized();
     }
 
+    private string GetFormattedDate(string date)
+    {
+        return date is { Length: 8 } ? 
+            $"{date[6..8]}-{date[4..6]}-{date[..4]}" : 
+            date;
+    }
 }

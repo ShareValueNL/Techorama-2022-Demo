@@ -11,7 +11,7 @@ public record RdwModel
     public string Brand { get; init; } = null!;
 
     [JsonPropertyName("handelsbenaming")] 
-    public string Type { get; init; } = null!;
+    public string Model { get; init; } = null!;
 
     [JsonPropertyName("vervaldatum_apk")]
     public string ApkExpiryDate { get; init; } = null!;

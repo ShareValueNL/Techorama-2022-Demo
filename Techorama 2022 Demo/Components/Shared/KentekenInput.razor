@@ -29,7 +29,7 @@
         var plate = licensePlate?.Replace("-", string.Empty).ToUpper();
         var regex = new Regex("[A-Z0-9]{6}");
 
-        if (plate is {Length: 6 } && regex.IsMatch(plate))
+        if (plate is { Length: 6 } && regex.IsMatch(plate))
         {
             Dispatcher.Dispatch(new FindKentekenAction(plate));
         }
