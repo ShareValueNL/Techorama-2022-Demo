@@ -1,22 +1,45 @@
 @using SV.Techorama.Store.FindKenteken
+@using SV.Techorama.Models
 
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h2>Car information</h2>
-<p>
-    <strong>@Brand</strong>
-    
-</p>
+@if (Loading)
+{
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>   
+}
+else
+{
+    <p>
+        <strong>@RdwModel?.Brand</strong>
 
+    </p>
+}
 @code {
-   
-    public string? Brand { get; set; }
+
+    public bool Loading { get; set; } = false;
+    
+    public RdwModel? RdwModel { get; set; }
     
     protected override void OnInitialized()
     {
+        SubscribeToAction<FindKentekenAction>(result =>
+        {
+            Loading = true;
+            StateHasChanged();
+        });
         SubscribeToAction<KentekenFoundAction>(result =>
         {
-            Brand = result.RdwModel.Brand;
+            Loading = false;
+            RdwModel = result.RdwModel;
+            StateHasChanged();
+        });
+        SubscribeToAction<FindKentekenErrorAction>(result =>
+        {
+            Loading = false;
+            RdwModel = null;
             StateHasChanged();
         });
         
