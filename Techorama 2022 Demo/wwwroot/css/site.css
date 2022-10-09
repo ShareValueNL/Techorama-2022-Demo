@@ -29,6 +29,17 @@ a, .btn-link {
     padding-top: 1.1rem;
 }
 
+.sv-logo {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    
+}
+
+.sv-logo img {
+    width: 400px;
+}
+
 .search-title-align-center {
     font-size: 2rem;
     width: 100%;
