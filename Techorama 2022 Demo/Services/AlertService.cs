@@ -54,6 +54,7 @@ public class AlertService : IAlertService
 
     public void Alert(Alert alert)
     {
+        alert.Id ??= DefaultId;
         OnAlert?.Invoke(alert);
     }
 

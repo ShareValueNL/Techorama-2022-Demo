@@ -2,7 +2,7 @@
 
 public class Alert
 {
-    public string Id { get; set; } = null!;
+    public string? Id { get; set; }
     public AlertType Type { get; init; }
     public string? Message { get; init; }
     public bool AutoClose { get; init; }
