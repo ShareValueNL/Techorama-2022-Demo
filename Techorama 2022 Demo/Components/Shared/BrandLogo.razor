@@ -1,0 +1,31 @@
+@using SV.Techorama.Store.FindKenteken
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<div class="logo">
+    @if (!string.IsNullOrWhiteSpace(Url))
+    {
+        <img alt="@BrandName" src="images/brands/@Url"/>
+    }
+</div>
+
+@code {
+
+    public string? BrandName { get; set; }
+    public string? Url { get; set; }
+    
+    public string[] AvailableLogos = new[] { "audi", "kia", "mercedes-benz", "polestar", "renault", "skoda", "smart", "tesla", "volkswagen", "volvo"};
+
+    protected override void OnInitialized()
+    {
+        SubscribeToAction<KentekenFoundAction>(result =>
+        {
+            BrandName = result.RdwModel.Brand;
+            var name = BrandName.ToLower();
+            Url = AvailableLogos.Contains(name) ? $"{name}.png" : "brand-not-found.png";
+            StateHasChanged();
+        });
+        
+        base.OnInitialized();
+    }
+
+}
