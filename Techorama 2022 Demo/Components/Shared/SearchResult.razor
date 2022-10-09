@@ -1,11 +1,16 @@
 @using SV.Techorama.Store.FindKenteken
+
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
-<p>@Brand</p>
+<h2>Car information</h2>
+<p>
+    <strong>@Brand</strong>
+    
+</p>
 
 @code {
    
-    public string Brand { get; set; }
+    public string? Brand { get; set; }
     
     protected override void OnInitialized()
     {

@@ -1,5 +1,11 @@
 ﻿@page "/"
 
+@using SV.Techorama.Services.Interfaces
+@using SV.Techorama.Store.FindKenteken
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@inject IAlertService AlertService;
+
 <PageTitle>Index</PageTitle>
 
 <h1>Hello Techorama!</h1>
@@ -7,3 +13,18 @@
 <KentekenInput></KentekenInput>
 
 <SearchResult></SearchResult>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        SubscribeToAction<FindKentekenErrorAction>(results =>
+        {
+            AlertService.Warn(results.ErrorMessage);
+        });
+        
+        base.OnInitialized();
+    }
+
+
+}

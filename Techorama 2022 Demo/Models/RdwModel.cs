@@ -23,13 +23,13 @@ public record RdwModel
     public string InitialRegistrationDate { get; init; } = null!;
 
     [JsonPropertyName("eerste_kleur")]
-    public string Color { get; init; } = null;
+    public string Color { get; init; } = null!;
 
     [JsonPropertyName("massa_ledig_voertuig")]
-    public string EmptyWeight { get; init; } = null;
+    public string EmptyWeight { get; init; } = null!;
 
     [JsonPropertyName("maximale_constructiesnelheid")]
-    public string MaximumSpeed { get; init; } = null;
+    public string MaximumSpeed { get; init; } = null!;
 
     [JsonPropertyName("lengte")]
     public string Length { get; init; } = null!;

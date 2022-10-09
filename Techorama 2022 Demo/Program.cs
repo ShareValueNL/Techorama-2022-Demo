@@ -10,7 +10,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddHttpClient();
-builder.Services.AddTransient<IRdwService, RdwService>();
+builder.Services.AddScoped<IRdwService, RdwService>();
+builder.Services.AddScoped<IAlertService, AlertService>();
 
 builder.Services.AddFluxor(o =>
 {
